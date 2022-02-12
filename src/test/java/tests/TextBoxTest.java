@@ -5,8 +5,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTest {
 
@@ -17,23 +17,35 @@ public class TextBoxTest {
     }
 
     @Test
-    void successFillTest() {
-        open("/text-box");
-        $(".main-header").shouldHave(text("Text Box"));
+    void successOpenPracticeFormTest() {
+        open("");
 
-        $("#userName").setValue("grisha");
-        $("#userEmail").setValue("gri@gri.com");
-        $("#currentAddress").setValue("some address 1");
-        $("#permanentAddress").setValue("some address 2");
-        $("#submit").click();
+        $x("//div[@class='category-cards']/div[2]").click();
+        $(".main-header").shouldHave(text("Forms"));
+        $x("//div[@class='accordion']/div[2]/div[@class='element-list collapse show']/ul/li").click();
+        $(".main-header").shouldHave(text("Practice Form"));
+    }
 
-        $("#output").shouldHave(text("grisha"), text("gri@gri.com"), text("some address 1"),
-                text("some address 2"));
+    @Test
+    void practiceFormTest() {
+        open("https://demoqa.com/automation-practice-form");
+
+        $(".main-header").shouldHave(text("Practice Form"));
+        $("#firstName").setValue("Grisha");
+        $("#lastName").setValue("Amelin");
+        $("#userEmail").setValue("qwerty@mail.ru");
+        $(byText("Male")).click();
+        $(byText("Other")).click();
+
+//        $("#submit").click();
+//
+//        $("#output").shouldHave(text("grisha"), text("gri@gri.com"), text("some address 1"),
+//                text("some address 2"));
         System.out.println("итоговый тест прошел!");
 
-        $("#currentAddress", 1).shouldHave(text("some address 1")); // 1 вариант поиска второго элемента current address
-        $("#output").$("#currentAddress").shouldHave(text("some address 1")); // 2 вариант поиска
-        $("#output #currentAddress").shouldHave(text("some address 1")); // 3 вариант поиска
+//        $("#currentAddress", 1).shouldHave(text("some address 1")); // 1 вариант поиска второго элемента current address
+//        $("#output").$("#currentAddress").shouldHave(text("some address 1")); // 2 вариант поиска
+//        $("#output #currentAddress").shouldHave(text("some address 1")); // 3 вариант поиска
     }
 
 }
