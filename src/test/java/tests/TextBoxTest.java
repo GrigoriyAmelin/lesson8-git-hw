@@ -28,7 +28,7 @@ public class TextBoxTest {
 
     @Test
     void practiceFormTest() {
-        open("https://demoqa.com/automation-practice-form");
+        open("/automation-practice-form");
 
         $(".main-header").shouldHave(text("Practice Form"));
         $("#firstName").setValue("Grisha");
