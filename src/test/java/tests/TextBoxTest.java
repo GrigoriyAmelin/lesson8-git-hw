@@ -6,6 +6,8 @@ import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.text;
@@ -51,7 +53,35 @@ public class TextBoxTest {
         $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
                 .shouldNotBe(selected);
 
-//        $("#submit").click();
+        $("#userNumber").setValue("89999452323111");
+
+        // Проверка выбора предмета из выпадающего списка
+        $("#subjectsInput").sendKeys("e");
+        $(byText("English")).click();
+        $("#subjectsInput").sendKeys("erc");
+        $(byText("Commerce")).click();
+        $("#subjectsInput").sendKeys("a");
+        $(byText("Arts")).click();
+        $("#subjectsInput").setValue("erc");
+
+        //Выбор чек-боксов и проверка их активности после выбора
+        $(byText("Reading")).click();
+        $("#hobbies-checkbox-1").parent().click();
+        $("[class='custom-control custom-checkbox custom-control-inline'] #hobbies-checkbox-1")
+                .shouldBe(selected);
+        $("[class='custom-control custom-checkbox custom-control-inline'] #hobbies-checkbox-3")
+                .shouldNotBe(selected);
+        $("#hobbies-checkbox-3").scrollTo().parent().click();
+        $("[class='custom-control custom-checkbox custom-control-inline'] #hobbies-checkbox-3")
+                .shouldBe(selected);
+
+        $("#uploadPicture").uploadFile(new File("src/test/resources/img/11.jpg"));
+        File myfile = new File("src/test/resources/img/12.jpg");
+        $("#uploadPicture").uploadFile(myfile);
+
+//        $("#hobbies-checkbox-1").shouldBe(enabled);
+        $("#currentAddress").setValue("Moscow, Kremlin");
+        $("#submit").click();
 //
 //        $("#output").shouldHave(text("grisha"), text("gri@gri.com"), text("some address 1"),
 //                text("some address 2"));
