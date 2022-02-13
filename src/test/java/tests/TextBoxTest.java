@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.selected;
-import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -55,6 +54,19 @@ public class TextBoxTest {
 
         $("#userNumber").setValue("89999452323111");
 
+        // Установка даты в календаре
+        $("#dateOfBirthInput").click();
+        // вариант 1 выбора элемента списка
+        $(".react-datepicker__month-select").$(byText("October")).click();
+        // вариант 2 выбора элемента списка
+        $(".react-datepicker__month-select").selectOption("November");
+        // вариант 3 выбора элемента списка
+        $(".react-datepicker__month-select").selectOptionByValue("3");
+        $(".react-datepicker__year-select").selectOptionByValue("1937");
+        $x("//div[@class='react-datepicker']/button[text()='Previous Month']").click();
+        $(".react-datepicker__day--002").click();
+
+
         // Проверка выбора предмета из выпадающего списка
         $("#subjectsInput").sendKeys("e");
         $(byText("English")).click();
@@ -79,17 +91,49 @@ public class TextBoxTest {
         File myfile = new File("src/test/resources/img/12.jpg");
         $("#uploadPicture").uploadFile(myfile);
 
-//        $("#hobbies-checkbox-1").shouldBe(enabled);
         $("#currentAddress").setValue("Moscow, Kremlin");
+        $("#state").click();
+        $(byText("Haryana")).click();
+        $("#city").click();
+        $(byText("Panipat")).click();
         $("#submit").click();
-//
-//        $("#output").shouldHave(text("grisha"), text("gri@gri.com"), text("some address 1"),
-//                text("some address 2"));
-        System.out.println("итоговый тест прошел!");
 
-//        $("#currentAddress", 1).shouldHave(text("some address 1")); // 1 вариант поиска второго элемента current address
-//        $("#output").$("#currentAddress").shouldHave(text("some address 1")); // 2 вариант поиска
-//        $("#output #currentAddress").shouldHave(text("some address 1")); // 3 вариант поиска
+        // Проверки финальной формы
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(
+                text("Grisha Amelin"),
+                text("qwerty@mail.ru"),
+                text("Other"),
+                text("8999945232"),
+                text("02 March,1937"),
+                text("English, Commerce, Arts"),
+                text("Reading, Sports, Music"),
+                text("12.jpg"),
+                text("Moscow, Kremlin"),
+                text("Haryana Panipat")
+        );
+        $(".table-responsive").$(byText("Student Name")).parent()
+                .shouldHave(text("Grisha Amelin"));
+        $(".table-responsive").$(byText("Student Email")).parent()
+                .shouldHave(text("qwerty@mail.ru"));
+        $(".table-responsive").$(byText("Gender")).parent()
+                .shouldHave(text("Other"));
+        $(".table-responsive").$(byText("Mobile")).parent()
+                .shouldHave(text("8999945232"));
+        $(".table-responsive").$(byText("Date of Birth")).parent()
+                .shouldHave(text("02 March,1937"));
+        $(".table-responsive").$(byText("Subjects")).parent()
+                .shouldHave(text("English, Commerce, Arts"));
+        $(".table-responsive").$(byText("Hobbies")).parent()
+                .shouldHave(text("Reading, Sports, Music"));
+        $(".table-responsive").$(byText("Picture")).parent()
+                .shouldHave(text("12.jpg"));
+        $(".table-responsive").$(byText("Address")).parent()
+                .shouldHave(text("Moscow, Kremlin"));
+        $(".table-responsive").$(byText("State and City")).parent()
+                .shouldHave(text("Haryana Panipat"));
+
+        System.out.println("итоговый тест прошел!");
     }
 
 }
