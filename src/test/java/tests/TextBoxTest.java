@@ -1,9 +1,13 @@
 package tests;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.selected;
+import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -34,8 +38,18 @@ public class TextBoxTest {
         $("#firstName").setValue("Grisha");
         $("#lastName").setValue("Amelin");
         $("#userEmail").setValue("qwerty@mail.ru");
+
+        //Выбор радио-баттонов и проверка их активности после выбора
+        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
+                .shouldNotBe(selected);
         $(byText("Male")).click();
+        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
+                .shouldBe(selected);
         $(byText("Other")).click();
+        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-3")
+                .shouldBe(selected);
+        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
+                .shouldNotBe(selected);
 
 //        $("#submit").click();
 //
