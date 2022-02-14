@@ -1,10 +1,9 @@
 package tests;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import java.io.File;
 
@@ -12,8 +11,9 @@ import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
 
-public class TextBoxTests {
+public class RegistrationFormTests {
 
     @BeforeAll
     static void before() {
@@ -22,23 +22,15 @@ public class TextBoxTests {
     }
 
     @Test
-    void successOpenPracticeFormTest() {
-        open("");
-
-        $x("//div[@class='category-cards']/div[2]").click();
-        $(".main-header").shouldHave(text("Forms"));
-        $x("//div[@class='accordion']/div[2]/div[@class='element-list collapse show']/ul/li").click();
-        $(".main-header").shouldHave(text("Practice Form"));
-    }
-
-    @Test
     void practiceFormTest() {
         open("/automation-practice-form");
 
-        $("#firstName").setValue("Grisha");
-        $("#lastName").setValue("Amelin");
+        new RegistrationPage().setFistNameInput("Grisha");
+        new RegistrationPage().setLastNameInput("Amelin");
+
         $(".main-header").shouldHave(text("Practice Form"));
-        $("#userEmail").setValue("qwerty@mail.ru");
+
+        new RegistrationPage().setUserEmailInput("qwerty@mail.ru");
 
         //Выбор радио-баттонов и проверка их активности после выбора
         $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
@@ -52,7 +44,7 @@ public class TextBoxTests {
         $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
                 .shouldNotBe(selected);
 
-        $("#userNumber").setValue("89999452323111");
+        new RegistrationPage().setUserNumberInput("89999452323111");
 
         // Установка даты в календаре
         $("#dateOfBirthInput").click();
@@ -137,4 +129,3 @@ public class TextBoxTests {
     }
 
 }
-
