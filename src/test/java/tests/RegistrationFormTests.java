@@ -15,6 +15,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationFormTests {
 
+    RegistrationPage registrationPage = new RegistrationPage();
+    String firstName = "Grisha";
+    String lastName = "Amelin";
+    String eMail = "qwerty@mail.ru";
+
     @BeforeAll
     static void before() {
         Configuration.baseUrl = "https://demoqa.com";
@@ -23,14 +28,10 @@ public class RegistrationFormTests {
 
     @Test
     void practiceFormTest() {
-        open("/automation-practice-form");
-
-        new RegistrationPage().setFistNameInput("Grisha");
-        new RegistrationPage().setLastNameInput("Amelin");
-
-        $(".main-header").shouldHave(text("Practice Form"));
-
-        new RegistrationPage().setUserEmailInput("qwerty@mail.ru");
+        registrationPage.openPage();
+        registrationPage.setFistNameInput(firstName);
+        registrationPage.setLastNameInput(lastName);
+        registrationPage.setUserEmailInput(eMail);
 
         //Выбор радио-баттонов и проверка их активности после выбора
         $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
@@ -44,7 +45,7 @@ public class RegistrationFormTests {
         $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
                 .shouldNotBe(selected);
 
-        new RegistrationPage().setUserNumberInput("89999452323111");
+        registrationPage.setUserNumberInput("89999452323111");
 
         // Установка даты в календаре
         $("#dateOfBirthInput").click();
@@ -104,26 +105,19 @@ public class RegistrationFormTests {
                 text("Moscow, Kremlin"),
                 text("Haryana Panipat")
         );
-        $(".table-responsive").$(byText("Student Name")).parent()
-                .shouldHave(text("Grisha Amelin"));
-        $(".table-responsive").$(byText("Student Email")).parent()
-                .shouldHave(text("qwerty@mail.ru"));
-        $(".table-responsive").$(byText("Gender")).parent()
-                .shouldHave(text("Other"));
-        $(".table-responsive").$(byText("Mobile")).parent()
-                .shouldHave(text("8999945232"));
-        $(".table-responsive").$(byText("Date of Birth")).parent()
-                .shouldHave(text("02 March,1937"));
-        $(".table-responsive").$(byText("Subjects")).parent()
-                .shouldHave(text("English, Commerce, Arts"));
-        $(".table-responsive").$(byText("Hobbies")).parent()
-                .shouldHave(text("Reading, Sports, Music"));
-        $(".table-responsive").$(byText("Picture")).parent()
-                .shouldHave(text("12.jpg"));
-        $(".table-responsive").$(byText("Address")).parent()
-                .shouldHave(text("Moscow, Kremlin"));
-        $(".table-responsive").$(byText("State and City")).parent()
-                .shouldHave(text("Haryana Panipat"));
+
+        registrationPage.checkForm("Student Name", firstName + lastName);
+        registrationPage.checkForm("Student Email", "qwerty@mail.ru");
+        registrationPage.checkForm("Gender", "Other");
+        registrationPage.checkForm("Mobile", "8999945232");
+        registrationPage.checkForm("Date of Birth", "02 March,1937");
+        registrationPage.checkForm("Subjects", "English, Commerce, Arts");
+        registrationPage.checkForm("Hobbies", "Reading, Sports, Music");
+        registrationPage.checkForm("Picture", "12.jpg");
+        registrationPage.checkForm("Address", "Moscow, Kremlin");
+        // вариант создания нового экземпляра класса
+        new RegistrationPage().checkForm("State and City", "Haryana Panipat");
+
 
         System.out.println("итоговый тест прошел!");
     }
