@@ -107,7 +107,7 @@ public class RegistrationFormTests {
         );
 
         registrationPage.checkForm("Student Name", firstName + lastName);
-        registrationPage.checkForm("Student Email", "qwerty@mail.ru");
+        registrationPage.checkForm("Student Email", eMail);
         registrationPage.checkForm("Gender", "Other");
         registrationPage.checkForm("Mobile", "8999945232");
         registrationPage.checkForm("Date of Birth", "02 March,1937");
