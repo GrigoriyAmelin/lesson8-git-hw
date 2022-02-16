@@ -28,10 +28,12 @@ public class RegistrationFormTests {
 
     @Test
     void practiceFormTest() {
-        registrationPage.openPage();
-        registrationPage.setFistNameInput(firstName);
-        registrationPage.setLastNameInput(lastName);
-        registrationPage.setUserEmailInput(eMail);
+        registrationPage
+                .openPage()
+                .setFistNameInput(firstName)
+                .setLastNameInput(lastName)
+                .setUserEmailInput(eMail);
+
 
         //Выбор радио-баттонов и проверка их активности после выбора
         $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
@@ -106,18 +108,17 @@ public class RegistrationFormTests {
                 text("Haryana Panipat")
         );
 
-        registrationPage.checkForm("Student Name", firstName + lastName);
-        registrationPage.checkForm("Student Email", eMail);
-        registrationPage.checkForm("Gender", "Other");
-        registrationPage.checkForm("Mobile", "8999945232");
-        registrationPage.checkForm("Date of Birth", "02 March,1937");
-        registrationPage.checkForm("Subjects", "English, Commerce, Arts");
-        registrationPage.checkForm("Hobbies", "Reading, Sports, Music");
-        registrationPage.checkForm("Picture", "12.jpg");
-        registrationPage.checkForm("Address", "Moscow, Kremlin");
-        // вариант создания нового экземпляра класса
-        new RegistrationPage().checkForm("State and City", "Haryana Panipat");
-
+        registrationPage
+                .checkForm("Student Name", firstName + " " + lastName)
+                .checkForm("Student Email", eMail)
+                .checkForm("Gender", "Other")
+                .checkForm("Mobile", "8999945232")
+                .checkForm("Date of Birth", "02 March,1937")
+                .checkForm("Subjects", "English, Commerce, Arts")
+                .checkForm("Hobbies", "Reading, Sports, Music")
+                .checkForm("Picture", "12.jpg")
+                .checkForm("Address", "Moscow, Kremlin")
+                .checkForm("State and City", "Haryana Panipat");
 
         System.out.println("итоговый тест прошел!");
     }

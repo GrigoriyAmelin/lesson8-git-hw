@@ -19,29 +19,41 @@ public class RegistrationPage {
     private SelenideElement resultTable = $(".table-responsive");
 
     // actions
-    public void openPage() {
+    public RegistrationPage openPage() {
         open("/automation-practice-form");
         headerTitle.shouldHave(text("Practice Form"));
+
+        return this;
     }
 
-    public void setFistNameInput(String firstName) {
+    public RegistrationPage setFistNameInput(String firstName) {
         firstNameInput.setValue(firstName);
+
+        return this;
     }
 
-    public void setLastNameInput(String lastName) {
+    public RegistrationPage setLastNameInput(String lastName) {
         lastNameInput.setValue(lastName);
+
+        return this;
     }
 
-    public void setUserEmailInput(String userEmail) {
+    public RegistrationPage setUserEmailInput(String userEmail) {
         userEmailInput.setValue(userEmail);
+
+        return this;
     }
 
-    public void setUserNumberInput(String userNumber) {
+    public RegistrationPage setUserNumberInput(String userNumber) {
         userNumberInput.setValue(userNumber);
+
+        return this;
     }
 
-    public void checkForm(String fieldName, String value) {
+    public RegistrationPage checkForm(String fieldName, String value) {
         resultTable.$(byText(fieldName)).parent().shouldHave(text(value));
+
+        return this;
     }
 
 
