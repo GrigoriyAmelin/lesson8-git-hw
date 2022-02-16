@@ -19,6 +19,9 @@ public class RegistrationFormTests {
     String firstName = "Grisha";
     String lastName = "Amelin";
     String eMail = "qwerty@mail.ru";
+    String userNumber = "8999945232";
+    String genderMale = "Male";
+    String genderOther = "Other";
 
     @BeforeAll
     static void before() {
@@ -38,25 +41,22 @@ public class RegistrationFormTests {
         //Выбор радио-баттонов и проверка их активности после выбора
         $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
                 .shouldNotBe(selected);
-        $(byText("Male")).click();
+        $(byText(genderMale)).click();
         $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
                 .shouldBe(selected);
-        $(byText("Other")).click();
+        $(byText(genderOther)).click();
         $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-3")
                 .shouldBe(selected);
         $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
                 .shouldNotBe(selected);
 
-        registrationPage.setUserNumberInput("89999452323111");
+        registrationPage.setUserNumberInput(userNumber);
+//        registrationPage.setBirthDate("02", "March", "1937");
 
         // Установка даты в календаре
         $("#dateOfBirthInput").click();
-        // вариант 1 выбора элемента списка
-        $(".react-datepicker__month-select").$(byText("October")).click();
         // вариант 2 выбора элемента списка
         $(".react-datepicker__month-select").selectOption("November");
-        // вариант 3 выбора элемента списка
-        $(".react-datepicker__month-select").selectOptionByValue("3");
         $(".react-datepicker__year-select").selectOptionByValue("1937");
         $x("//div[@class='react-datepicker']/button[text()='Previous Month']").click();
         $(".react-datepicker__day--002").click();
@@ -96,11 +96,11 @@ public class RegistrationFormTests {
         // Проверки финальной формы
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $(".table-responsive").shouldHave(
-                text("Grisha Amelin"),
-                text("qwerty@mail.ru"),
-                text("Other"),
-                text("8999945232"),
-                text("02 March,1937"),
+                text(firstName + " " + lastName),
+                text(eMail),
+                text(genderOther),
+                text(userNumber),
+                text("02 October,1937"),
                 text("English, Commerce, Arts"),
                 text("Reading, Sports, Music"),
                 text("12.jpg"),
@@ -111,9 +111,9 @@ public class RegistrationFormTests {
         registrationPage
                 .checkForm("Student Name", firstName + " " + lastName)
                 .checkForm("Student Email", eMail)
-                .checkForm("Gender", "Other")
-                .checkForm("Mobile", "8999945232")
-                .checkForm("Date of Birth", "02 March,1937")
+                .checkForm("Gender", genderOther)
+                .checkForm("Mobile", userNumber)
+                .checkForm("Date of Birth", "02 October,1937")
                 .checkForm("Subjects", "English, Commerce, Arts")
                 .checkForm("Hobbies", "Reading, Sports, Music")
                 .checkForm("Picture", "12.jpg")
