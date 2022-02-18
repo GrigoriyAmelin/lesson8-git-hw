@@ -21,10 +21,7 @@ public class RegistrationPage {
             userEmailInput = $("#userEmail"),
             userNumberInput = $("#userNumber"),
             dateOfBirthInput = $("#dateOfBirthInput"),
-            genderRadioMaleInput = $(byText("Male")),
-            genderRadioOtherInput = $(byText("Other"));
-
-    private SelenideElement resultTable = $(".table-responsive");
+            resultTable = $(".table-responsive");
 
     // actions
     public RegistrationPage openPage() {

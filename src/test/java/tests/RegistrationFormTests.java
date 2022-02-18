@@ -45,19 +45,6 @@ public class RegistrationFormTests {
                 .setGenderRadioInput(genderMale)
                 .setGenderRadioInput(genderOther);
 
-
-//        //Выбор радио-баттонов и проверка их активности после выбора
-//        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
-//                .shouldNotBe(selected);
-//        $(byText(genderMale)).click();
-//        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
-//                .shouldBe(selected);
-//        $(byText(genderOther)).click();
-//        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-3")
-//                .shouldBe(selected);
-//        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
-//                .shouldNotBe(selected);
-
         registrationPage
                 .setUserNumberInput(userNumber)
                 .setBirthDate("October", "1937");
