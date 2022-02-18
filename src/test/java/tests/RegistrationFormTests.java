@@ -20,7 +20,10 @@ public class RegistrationFormTests {
     String lastName = "Amelin";
     String eMail = "qwerty@mail.ru";
     String userNumber = "8999945232";
+    String dateOfBirth = "02 October,1937";
     String subjects = "English, Commerce, Arts";
+    String hobbies = "Reading, Sports, Music";
+    String picture = "12.jpg";
     String genderMale = "Male";
     String genderOther = "Other";
     String currentAddress = "Moscow, Kremlin";
@@ -95,10 +98,10 @@ public class RegistrationFormTests {
                 text(eMail),
                 text(genderOther),
                 text(userNumber),
-                text("02 October,1937"),
+                text(dateOfBirth),
                 text(subjects),
-                text("Reading, Sports, Music"),
-                text("12.jpg"),
+                text(hobbies),
+                text(picture),
                 text(currentAddress),
                 text(stateAndCity)
         );
@@ -108,14 +111,14 @@ public class RegistrationFormTests {
                 .checkForm("Student Email", eMail)
                 .checkForm("Gender", genderOther)
                 .checkForm("Mobile", userNumber)
-                .checkForm("Date of Birth", "02 October,1937")
+                .checkForm("Date of Birth", dateOfBirth)
                 .checkForm("Subjects", subjects)
-                .checkForm("Hobbies", "Reading, Sports, Music")
-                .checkForm("Picture", "12.jpg")
+                .checkForm("Hobbies", hobbies)
+                .checkForm("Picture", picture)
                 .checkForm("Address", currentAddress)
                 .checkForm("State and City", stateAndCity);
 
-        System.out.println("итоговый тест прошел!");
+        System.out.println("=============== Test passed! ===============");
     }
 
 }
