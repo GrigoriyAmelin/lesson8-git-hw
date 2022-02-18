@@ -20,6 +20,7 @@ public class RegistrationFormTests {
     String lastName = "Amelin";
     String eMail = "qwerty@mail.ru";
     String userNumber = "8999945232";
+    String subjects = "English, Commerce, Arts";
     String genderMale = "Male";
     String genderOther = "Other";
     String currentAddress = "Moscow, Kremlin";
@@ -95,7 +96,7 @@ public class RegistrationFormTests {
                 text(genderOther),
                 text(userNumber),
                 text("02 October,1937"),
-                text("English, Commerce, Arts"),
+                text(subjects),
                 text("Reading, Sports, Music"),
                 text("12.jpg"),
                 text(currentAddress),
@@ -108,7 +109,7 @@ public class RegistrationFormTests {
                 .checkForm("Gender", genderOther)
                 .checkForm("Mobile", userNumber)
                 .checkForm("Date of Birth", "02 October,1937")
-                .checkForm("Subjects", "English, Commerce, Arts")
+                .checkForm("Subjects", subjects)
                 .checkForm("Hobbies", "Reading, Sports, Music")
                 .checkForm("Picture", "12.jpg")
                 .checkForm("Address", currentAddress)
