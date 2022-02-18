@@ -41,20 +41,22 @@ public class RegistrationFormTests {
                 .openPage()
                 .setFistNameInput(firstName)
                 .setLastNameInput(lastName)
-                .setUserEmailInput(eMail);
+                .setUserEmailInput(eMail)
+                .setGenderRadioInput(genderMale)
+                .setGenderRadioInput(genderOther);
 
 
-        //Выбор радио-баттонов и проверка их активности после выбора
-        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
-                .shouldNotBe(selected);
-        $(byText(genderMale)).click();
-        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
-                .shouldBe(selected);
-        $(byText(genderOther)).click();
-        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-3")
-                .shouldBe(selected);
-        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
-                .shouldNotBe(selected);
+//        //Выбор радио-баттонов и проверка их активности после выбора
+//        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
+//                .shouldNotBe(selected);
+//        $(byText(genderMale)).click();
+//        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
+//                .shouldBe(selected);
+//        $(byText(genderOther)).click();
+//        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-3")
+//                .shouldBe(selected);
+//        $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
+//                .shouldNotBe(selected);
 
         registrationPage
                 .setUserNumberInput(userNumber)
@@ -118,7 +120,7 @@ public class RegistrationFormTests {
                 .checkForm("Address", currentAddress)
                 .checkForm("State and City", stateAndCity);
 
-        System.out.println("=============== Test passed! ===============");
+        System.out.println("\n=============== Test passed! ===============\n");
     }
 
 }

@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.RadioButtonComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -10,6 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class RegistrationPage {
     // components
     private CalendarComponent calendarComponent = new CalendarComponent();
+    private RadioButtonComponent radioButtonComponent = new RadioButtonComponent();
 
     // locators
     private SelenideElement
@@ -18,7 +20,9 @@ public class RegistrationPage {
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
             userNumberInput = $("#userNumber"),
-            dateOfBirthInput = $("#dateOfBirthInput");
+            dateOfBirthInput = $("#dateOfBirthInput"),
+            genderRadioMaleInput = $(byText("Male")),
+            genderRadioOtherInput = $(byText("Other"));
 
     private SelenideElement resultTable = $(".table-responsive");
 
@@ -41,6 +45,11 @@ public class RegistrationPage {
 
     public RegistrationPage setUserEmailInput(String userEmail) {
         userEmailInput.setValue(userEmail);
+        return this;
+    }
+
+    public RegistrationPage setGenderRadioInput(String gender) {
+        radioButtonComponent.setRadioButton(gender);
         return this;
     }
 
