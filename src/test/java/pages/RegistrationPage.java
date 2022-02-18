@@ -1,12 +1,16 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
+    // components
+    private CalendarComponent calendarComponent = new CalendarComponent();
+
     // locators
     private SelenideElement
             headerTitle = $(".main-header"),
@@ -45,13 +49,9 @@ public class RegistrationPage {
         return this;
     }
 
-    public void setBirthDate(String day, String month, String year) {
+    public void setBirthDate(String month, String year) {
         dateOfBirthInput.click();
-        // вариант 2 выбора элемента списка
-        $(".react-datepicker__month-select").selectOption(month);
-        $(".react-datepicker__year-select").selectOptionByValue(year);
-        $x("//div[@class='react-datepicker']/button[text()='Previous Month']").click();
-        $(".react-datepicker__day--002").click();
+        calendarComponent.setDate(month, year);
     }
 
     public RegistrationPage checkForm(String fieldName, String value) {

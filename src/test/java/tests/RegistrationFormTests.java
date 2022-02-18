@@ -50,17 +50,9 @@ public class RegistrationFormTests {
         $("[class='custom-control custom-radio custom-control-inline'] #gender-radio-1")
                 .shouldNotBe(selected);
 
-        registrationPage.setUserNumberInput(userNumber);
-//        registrationPage.setBirthDate("02", "March", "1937");
-
-        // Установка даты в календаре
-        $("#dateOfBirthInput").click();
-        // вариант 2 выбора элемента списка
-        $(".react-datepicker__month-select").selectOption("November");
-        $(".react-datepicker__year-select").selectOptionByValue("1937");
-        $x("//div[@class='react-datepicker']/button[text()='Previous Month']").click();
-        $(".react-datepicker__day--002").click();
-
+        registrationPage
+                .setUserNumberInput(userNumber)
+                .setBirthDate("October", "1937");
 
         // Проверка выбора предмета из выпадающего списка
         $("#subjectsInput").sendKeys("e");
