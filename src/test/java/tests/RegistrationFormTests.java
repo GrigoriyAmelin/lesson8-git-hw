@@ -22,6 +22,8 @@ public class RegistrationFormTests {
     String userNumber = "8999945232";
     String genderMale = "Male";
     String genderOther = "Other";
+    String currentAddress = "Moscow, Kremlin";
+    String stateAndCity = "Haryana Panipat";
 
     @BeforeAll
     static void before() {
@@ -78,7 +80,7 @@ public class RegistrationFormTests {
         File myfile = new File("src/test/resources/img/12.jpg");
         $("#uploadPicture").uploadFile(myfile);
 
-        $("#currentAddress").setValue("Moscow, Kremlin");
+        $("#currentAddress").setValue(currentAddress);
         $("#state").click();
         $(byText("Haryana")).click();
         $("#city").click();
@@ -96,8 +98,8 @@ public class RegistrationFormTests {
                 text("English, Commerce, Arts"),
                 text("Reading, Sports, Music"),
                 text("12.jpg"),
-                text("Moscow, Kremlin"),
-                text("Haryana Panipat")
+                text(currentAddress),
+                text(stateAndCity)
         );
 
         registrationPage
@@ -109,8 +111,8 @@ public class RegistrationFormTests {
                 .checkForm("Subjects", "English, Commerce, Arts")
                 .checkForm("Hobbies", "Reading, Sports, Music")
                 .checkForm("Picture", "12.jpg")
-                .checkForm("Address", "Moscow, Kremlin")
-                .checkForm("State and City", "Haryana Panipat");
+                .checkForm("Address", currentAddress)
+                .checkForm("State and City", stateAndCity);
 
         System.out.println("итоговый тест прошел!");
     }
