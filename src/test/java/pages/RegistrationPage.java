@@ -3,7 +3,7 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.RadioButtonComponent;
-import pages.components.SubjectComponent;
+import pages.components.DropDownComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -13,7 +13,7 @@ public class RegistrationPage {
     // components
     private CalendarComponent calendarComponent = new CalendarComponent();
     private RadioButtonComponent radioButtonComponent = new RadioButtonComponent();
-    private SubjectComponent subjectComponent = new SubjectComponent();
+    private DropDownComponent dropDownComponent = new DropDownComponent();
 
     // locators
     private SelenideElement
@@ -65,7 +65,7 @@ public class RegistrationPage {
 
     public RegistrationPage selectSubject(String letter, String subject) {
         subjectInput.sendKeys(letter);
-        subjectComponent.selectSubject(subject);
+        dropDownComponent.selectSubject(subject);
         return this;
     }
 
