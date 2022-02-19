@@ -21,6 +21,12 @@ public class RegistrationFormTests {
     String eMail = "qwerty@mail.ru";
     String userNumber = "8999945232";
     String dateOfBirth = "02 October,1937";
+    String spellEnglish = "e";
+    String subjectEnglish = "English";
+    String spellCommerce = "erc";
+    String subjectCommerce = "Commerce";
+    String spellArts = "a";
+    String subjectArts = "Arts";
     String subjects = "English, Commerce, Arts";
     String hobbies = "Reading, Sports, Music";
     String picture = "12.jpg";
@@ -43,20 +49,18 @@ public class RegistrationFormTests {
                 .setLastNameInput(lastName)
                 .setUserEmailInput(eMail)
                 .setGenderRadioInput(genderMale)
-                .setGenderRadioInput(genderOther);
+                .setGenderRadioInput(genderOther)
+                .selectSubject(spellEnglish, subjectEnglish)
+                .selectSubject(spellCommerce, subjectCommerce)
+                .selectSubject(spellArts, subjectArts);
 
         registrationPage
                 .setUserNumberInput(userNumber)
                 .setBirthDate("October", "1937");
 
+
         // Проверка выбора предмета из выпадающего списка
-        $("#subjectsInput").sendKeys("e");
-        $(byText("English")).click();
-        $("#subjectsInput").sendKeys("erc");
-        $(byText("Commerce")).click();
-        $("#subjectsInput").sendKeys("a");
-        $(byText("Arts")).click();
-        $("#subjectsInput").setValue("erc");
+//        $("#subjectsInput").setValue("erc");
 
         //Выбор чек-боксов и проверка их активности после выбора
         $(byText("Reading")).click();
