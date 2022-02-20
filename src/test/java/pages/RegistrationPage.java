@@ -2,18 +2,23 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.CheckBoxComponent;
 import pages.components.RadioButtonComponent;
 import pages.components.DropDownComponent;
+
+import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
+
     // components
     private CalendarComponent calendarComponent = new CalendarComponent();
     private RadioButtonComponent radioButtonComponent = new RadioButtonComponent();
     private DropDownComponent dropDownComponent = new DropDownComponent();
+    private CheckBoxComponent checkBoxComponent = new CheckBoxComponent();
 
     // locators
     private SelenideElement
@@ -24,7 +29,13 @@ public class RegistrationPage {
             userNumberInput = $("#userNumber"),
             dateOfBirthInput = $("#dateOfBirthInput"),
             resultTable = $(".table-responsive"),
-            subjectInput = $("#subjectsInput");
+            subjectInput = $("#subjectsInput"),
+            uploadFile = $("#uploadPicture"),
+            currentAddressInput = $("#currentAddress"),
+            stateInput = $("#state"),
+            cityInput = $("#city"),
+            submitButton = $("#submit"),
+            submittingFormHeaderTitle = $("#example-modal-sizes-title-lg");
 
     // actions
     public RegistrationPage openPage() {
@@ -65,14 +76,52 @@ public class RegistrationPage {
 
     public RegistrationPage selectSubject(String letter, String subject) {
         subjectInput.sendKeys(letter);
-        dropDownComponent.selectSubject(subject);
+        dropDownComponent.select(subject);
         return this;
     }
 
-    public RegistrationPage checkForm(String fieldName, String value) {
-        resultTable.$(byText(fieldName)).parent().shouldHave(text(value));
+    public RegistrationPage selectHobby(String hobby) {
+        checkBoxComponent.checkBoxSelect(hobby);
         return this;
     }
 
+    public RegistrationPage uploadFile(String uploadedFileName) {
+        File myfile = new File("src/test/resources/img/" + uploadedFileName);
+        uploadFile.uploadFile(myfile);
+        return this;
+    }
 
+    public RegistrationPage setCurrentAddress(String address) {
+        currentAddressInput.setValue(address);
+        return this;
+    }
+
+    public RegistrationPage setStateAndCity(String state, String city) {
+        stateInput.scrollTo().click();
+        dropDownComponent.select(state);
+        cityInput.scrollTo().click();
+        dropDownComponent.select(city);
+        return this;
+    }
+
+    public RegistrationPage clickSubmit() {
+        submitButton.scrollTo().click();
+        return this;
+    }
+
+    public RegistrationPage checkGoToSubmittingForm(String submittingFormHeader) {
+        submittingFormHeaderTitle.shouldHave(text(submittingFormHeader));
+        return this;
+    }
+
+    public RegistrationPage checkFillingForm(String value) {
+        resultTable.shouldHave(text(value));
+        return this;
+    }
+
+    public RegistrationPage checkForm(String formName, String value) {
+        resultTable.$(byText(formName)).parent().shouldHave(text(value));
+        return this;
+    }
 }
+

@@ -5,7 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class DropDownComponent {
 
-    public void selectSubject(String subject) {
+    public void select(String subject) {
         $(byText(subject)).click();
     }
 }

@@ -5,14 +5,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-import java.io.File;
-
-import static com.codeborne.selenide.Condition.selected;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$;
-
 public class RegistrationFormTests {
 
     RegistrationPage registrationPage = new RegistrationPage();
@@ -27,13 +19,16 @@ public class RegistrationFormTests {
     String subjectCommerce = "Commerce";
     String spellArts = "a";
     String subjectArts = "Arts";
-    String subjects = "English, Commerce, Arts";
-    String hobbies = "Reading, Sports, Music";
-    String picture = "12.jpg";
+    String hobbyReading = "Reading";
+    String hobbySports = "Sports";
+    String hobbyMusic = "Music";
+    String uploadedFile = "12.jpg";
     String genderMale = "Male";
     String genderOther = "Other";
     String currentAddress = "Moscow, Kremlin";
-    String stateAndCity = "Haryana Panipat";
+    String state = "Haryana";
+    String city = "Panipat";
+    String submittingFormHeader = "Thanks for submitting the form";
 
     @BeforeAll
     static void before() {
@@ -50,54 +45,33 @@ public class RegistrationFormTests {
                 .setUserEmailInput(eMail)
                 .setGenderRadioInput(genderMale)
                 .setGenderRadioInput(genderOther)
+                .setUserNumberInput(userNumber)
                 .selectSubject(spellEnglish, subjectEnglish)
                 .selectSubject(spellCommerce, subjectCommerce)
-                .selectSubject(spellArts, subjectArts);
-
-        registrationPage
-                .setUserNumberInput(userNumber)
+                .selectSubject(spellArts, subjectArts)
+                .selectHobby(hobbyReading)
+                .selectHobby(hobbySports)
+                .selectHobby(hobbyMusic)
+                .uploadFile(uploadedFile)
+                .setCurrentAddress(currentAddress)
+                .setStateAndCity(state, city)
                 .setBirthDate("October", "1937");
 
+        registrationPage
+                .clickSubmit()
+                .checkGoToSubmittingForm(submittingFormHeader);
 
-        // Проверка выбора предмета из выпадающего списка
-//        $("#subjectsInput").setValue("erc");
-
-        //Выбор чек-боксов и проверка их активности после выбора
-        $(byText("Reading")).click();
-        $("#hobbies-checkbox-1").parent().click();
-        $("[class='custom-control custom-checkbox custom-control-inline'] #hobbies-checkbox-1")
-                .shouldBe(selected);
-        $("[class='custom-control custom-checkbox custom-control-inline'] #hobbies-checkbox-3")
-                .shouldNotBe(selected);
-        $("#hobbies-checkbox-3").scrollTo().parent().click();
-        $("[class='custom-control custom-checkbox custom-control-inline'] #hobbies-checkbox-3")
-                .shouldBe(selected);
-
-        $("#uploadPicture").uploadFile(new File("src/test/resources/img/11.jpg"));
-        File myfile = new File("src/test/resources/img/12.jpg");
-        $("#uploadPicture").uploadFile(myfile);
-
-        $("#currentAddress").setValue(currentAddress);
-        $("#state").click();
-        $(byText("Haryana")).click();
-        $("#city").click();
-        $(byText("Panipat")).click();
-        $("#submit").click();
-
-        // Проверки финальной формы
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(
-                text(firstName + " " + lastName),
-                text(eMail),
-                text(genderOther),
-                text(userNumber),
-                text(dateOfBirth),
-                text(subjects),
-                text(hobbies),
-                text(picture),
-                text(currentAddress),
-                text(stateAndCity)
-        );
+        registrationPage
+                .checkFillingForm(firstName + " " + lastName)
+                .checkFillingForm(eMail)
+                .checkFillingForm(genderOther)
+                .checkFillingForm(userNumber)
+                .checkFillingForm(dateOfBirth)
+                .checkFillingForm(subjectEnglish + ", " + subjectCommerce + ", " + subjectArts)
+                .checkFillingForm(hobbyReading + ", " + hobbySports + ", " + hobbyMusic)
+                .checkFillingForm(uploadedFile)
+                .checkFillingForm(currentAddress)
+                .checkFillingForm(state + " " + city);
 
         registrationPage
                 .checkForm("Student Name", firstName + " " + lastName)
@@ -105,13 +79,12 @@ public class RegistrationFormTests {
                 .checkForm("Gender", genderOther)
                 .checkForm("Mobile", userNumber)
                 .checkForm("Date of Birth", dateOfBirth)
-                .checkForm("Subjects", subjects)
-                .checkForm("Hobbies", hobbies)
-                .checkForm("Picture", picture)
+                .checkForm("Subjects", subjectEnglish + ", " + subjectCommerce + ", " + subjectArts)
+                .checkForm("Hobbies", hobbyReading + ", " + hobbySports + ", " + hobbyMusic)
+                .checkForm("Picture", uploadedFile)
                 .checkForm("Address", currentAddress)
-                .checkForm("State and City", stateAndCity);
+                .checkForm("State and City", state + " " + city);
 
         System.out.println("\n=============== Test passed! ===============\n");
     }
-
 }
