@@ -3,13 +3,16 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
+import static tests.TestData.*;
+
 public class RegistrationFormTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
+
     String firstName = "Grisha";
     String lastName = "Amelin";
-    String eMail = "qwerty@mail.ru";
-    String userNumber = "8999945232";
+    String eMail = mail;
+    String userNumber = phone;
     String dateOfBirth = "02 October,1937";
     String spellEnglish = "e";
     String subjectEnglish = "English";
