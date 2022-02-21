@@ -1,11 +1,9 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-public class RegistrationFormTests {
+public class RegistrationFormTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
     String firstName = "Grisha";
@@ -29,12 +27,6 @@ public class RegistrationFormTests {
     String state = "Haryana";
     String city = "Panipat";
     String submittingFormHeader = "Thanks for submitting the form";
-
-    @BeforeAll
-    static void before() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1088";
-    }
 
     @Test
     void practiceFormTest() {
