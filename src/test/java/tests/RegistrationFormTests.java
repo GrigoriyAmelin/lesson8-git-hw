@@ -9,27 +9,27 @@ public class RegistrationFormTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
 
-    String firstName = "Grisha";
-    String lastName = "Amelin";
-    String eMail = mail;
-    String userNumber = phone;
-    String dateOfBirth = "02 October,1937";
-    String spellEnglish = "e";
-    String subjectEnglish = "English";
-    String spellCommerce = "erc";
-    String subjectCommerce = "Commerce";
-    String spellArts = "a";
-    String subjectArts = "Arts";
-    String hobbyReading = "Reading";
-    String hobbySports = "Sports";
-    String hobbyMusic = "Music";
-    String uploadedFile = "12.jpg";
-    String genderMale = "Male";
-    String genderOther = "Other";
-    String currentAddress = "Moscow, Kremlin";
-    String state = "Haryana";
-    String city = "Panipat";
-    String submittingFormHeader = "Thanks for submitting the form";
+    String firstName = "Grisha",
+            lastName = "Amelin",
+            eMail = mail,
+            userNumber = phone,
+            dateOfBirth = "02 October,1937",
+            spellEnglish = "e",
+            subjectEnglish = "English",
+            spellCommerce = "erc",
+            subjectCommerce = "Commerce",
+            spellArts = "a",
+            subjectArts = "Arts",
+            hobbyReading = "Reading",
+            hobbySports = "Sports",
+            hobbyMusic = "Music",
+            uploadedFile = "12.jpg",
+            genderMale = "Male",
+            genderOther = "Other",
+            currentAddress = "Moscow, Kremlin",
+            state = "Haryana",
+            city = "Panipat",
+            submittingFormHeader = "Thanks for submitting the form";
 
     @Test
     void practiceFormTest() {
