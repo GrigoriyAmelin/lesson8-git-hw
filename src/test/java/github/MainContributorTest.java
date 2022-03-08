@@ -13,7 +13,7 @@ public class MainContributorTest {
 
     @Test
     void andreiSontsevShouldBeMainContractor() {
-        Configuration.browserSize = "1020x1080";
+        Configuration.browserSize = "1120x1088";
         open("https://github.com/selenide/selenide");
         $(".Layout-sidebar").$(withText("Contributors")).closest(".BorderGrid-row").scrollTo()
                 .$("ul  li").hover();
