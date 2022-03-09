@@ -25,13 +25,9 @@ public class SoftAssertionsTest {
         // Переход на страницу Soft Assertions
         $(".filter-bar").sibling(0).$(byText("SoftAssertions")).click();
 
-//        $(".markdown-body ul").$(byText("Soft assertions"))
-//                .shouldHave(exactText("Soft assertions")).click();
+        // Проверка наличия примера кода для JUnit5
         $("#user-content-3-using-junit5-extend-test-class").parent().scrollTo()
                 .shouldHave(exactText("3. Using JUnit5 extend test class:"));
-
-
-        sleep(5000);
     }
 
 }
