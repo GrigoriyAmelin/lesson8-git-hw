@@ -28,6 +28,8 @@ public class SoftAssertionsTest {
         // Проверка наличия примера кода для JUnit5
         $("#user-content-3-using-junit5-extend-test-class").parent().scrollTo()
                 .shouldHave(exactText("3. Using JUnit5 extend test class:"));
-    }
 
+        // Добавлено ожидание на странице для удобного просмотра результатов
+        sleep(1000);
+    }
 }
