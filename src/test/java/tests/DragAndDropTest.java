@@ -28,7 +28,6 @@ public class DragAndDropTest {
         // Проверка названий квадратов после их перемещения
         $("#column-a").shouldHave(exactTextCaseSensitive("B"));
         $("#column-b").shouldHave(exactTextCaseSensitive("A"));
-
         sleep(1000);
     }
 }
