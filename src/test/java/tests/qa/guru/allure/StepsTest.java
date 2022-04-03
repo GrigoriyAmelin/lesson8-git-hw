@@ -17,9 +17,9 @@ public class StepsTest {
     @Test
     public void testLambdaSteps() {
 
-        SelenideLogger.addListener("allire", new AllureSelenide());
+        SelenideLogger.addListener("allure", new AllureSelenide());
 
-        step("открываем главную страницу", () -> {
+        step("Открываем главную страницу", () -> {
             open("https://github.com");
         });
         step("Ищем репозиторий " + REPOSITORY, () -> {
@@ -36,8 +36,20 @@ public class StepsTest {
             $(byPartialLinkText("Issues")).click();
             sleep(2000);
         });
-        step("Проверяем, что Issue с номеном " + ISSUE_NUMBER + " существует", () -> {
+        step("Проверяем, что Issue с номером " + ISSUE_NUMBER + " существует", () -> {
             $(withText("#" + ISSUE_NUMBER)).should(exist);
         });
+    }
+
+    @Test
+    public void testAnnotatedSteps() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
+        WebSteps steps = new WebSteps();
+        steps.openMainPage();
+        steps.searchForRepository(REPOSITORY);
+        steps.openRepository(REPOSITORY);
+        steps.openIssueTab();
+        steps.shouldSeeIssueWithNumber(ISSUE_NUMBER);
     }
 }
