@@ -13,7 +13,7 @@ public class SelenideTest {
     @Test
     public void testIssueSearch() {
 
-        SelenideLogger.addListener("allire", new AllureSelenide());
+        SelenideLogger.addListener("allure", new AllureSelenide());
         open("https://github.com");
 
         $(".header-search-input").click();

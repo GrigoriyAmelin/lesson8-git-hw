@@ -1,8 +1,12 @@
 package tests.qa.guru.allure;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Allure;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.Test;
+
+import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selectors.*;
@@ -34,6 +38,7 @@ public class StepsTest {
         });
         step("Переходим в таб Issues", () -> {
             $(byPartialLinkText("Issues")).click();
+            Allure.addAttachment("Page source", "text/html", WebDriverRunner.source(), "html");
             sleep(2000);
         });
         step("Проверяем, что Issue с номером " + ISSUE_NUMBER + " существует", () -> {
