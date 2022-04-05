@@ -23,7 +23,7 @@ public class SelenideTest {
 
         $(byLinkText("eroshenkoam/allure-example")).click();
         sleep(1000);
-        $(byPartialLinkText("Issuess")).click();
+        $(byPartialLinkText("Issues")).click();
         sleep(2000);
         $(withText("#68")).should(exist);
     }
