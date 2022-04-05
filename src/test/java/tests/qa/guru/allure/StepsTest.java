@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.Allure.*;
 import static io.qameta.allure.Allure.step;
 
 public class StepsTest {
@@ -38,7 +39,7 @@ public class StepsTest {
         });
         step("Переходим в таб Issues", () -> {
             $(byPartialLinkText("Issues")).click();
-            Allure.addAttachment("Page source", "text/html", WebDriverRunner.source(), "html");
+            addAttachment("Page source", "text/html", WebDriverRunner.source(), "html");
             sleep(2000);
         });
         step("Проверяем, что Issue с номером " + ISSUE_NUMBER + " существует", () -> {
@@ -56,5 +57,6 @@ public class StepsTest {
         steps.openRepository(REPOSITORY);
         steps.openIssueTab();
         steps.shouldSeeIssueWithNumber(ISSUE_NUMBER);
+        steps.takeScreenShot();
     }
 }
