@@ -33,7 +33,7 @@ public class LabelsTest {
         Allure.label("severity", SeverityLevel.CRITICAL.value());
         Allure.feature("Задачи в репозитории");
         Allure.story("Удаление новой задачи");
-        Allure.getLifecycle().updateFixture(testCase -> {
+        Allure.getLifecycle().updateTestCase(testCase -> {
             testCase.setName("Проверка удаления issue для авторизованного пользователя");
         });
         Allure.description("Этот тест проверяет создание Issue, когда происходит другое действие");
