@@ -1,17 +1,11 @@
 package tests.qa.guru.allure;
 
-import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.exactTextCaseSensitive;
-import static com.codeborne.selenide.Condition.exactValue;
-import static com.codeborne.selenide.Selectors.byLinkText;
-import static com.codeborne.selenide.Selectors.byPartialLinkText;
-import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.*;
 
 public class AnnotatedSelenideTest {

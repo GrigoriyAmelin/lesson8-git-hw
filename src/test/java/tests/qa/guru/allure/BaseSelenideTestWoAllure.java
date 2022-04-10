@@ -1,7 +1,5 @@
 package tests.qa.guru.allure;
 
-import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.exactTextCaseSensitive;
