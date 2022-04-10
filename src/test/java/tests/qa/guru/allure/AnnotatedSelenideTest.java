@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.*;
 
-public class AnnotatedSelenideTest {
+public class AnnotatedSelenideTest extends TestBase {
 
     public static final String repository = "GrigoriyAmelin/lesson7-allure";
     public static final String tabName = "Issues";

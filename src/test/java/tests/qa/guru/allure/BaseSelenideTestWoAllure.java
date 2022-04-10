@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byPartialLinkText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class BaseSelenideTestWoAllure {
+public class BaseSelenideTestWoAllure extends TestBase {
 
     public static final String repository = "GrigoriyAmelin/lesson7-allure";
     public static final String tabName = "Issues";

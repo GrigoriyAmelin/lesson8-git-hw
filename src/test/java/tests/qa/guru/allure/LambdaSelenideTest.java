@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.*;
 import static io.qameta.allure.Allure.parameter;
 
-public class LambdaSelenideTest {
+public class LambdaSelenideTest extends TestBase {
 
     public static final String repository = "GrigoriyAmelin/lesson7-allure";
     public static final String tabName = "Issues";
@@ -26,9 +26,7 @@ public class LambdaSelenideTest {
         parameter("Репозиторий", repository);
         parameter("Таб", tabName);
 
-        step("Открыть страницу https://github.com", () -> {
-            open("https://github.com");
-        });
+        step("Открыть страницу https://github.com", () -> open("https://github.com"));
 
         step("Найти поле поиска и ввести \"GrigoriyAmelin/lesson7-allure\"", () -> {
             $(".header-search-input").click();
@@ -36,9 +34,7 @@ public class LambdaSelenideTest {
             sleep(1000);
         });
 
-        step("Нажать клавишу ввода", () -> {
-            $(".header-search-input").submit();
-        });
+        step("Нажать клавишу ввода", () -> $(".header-search-input").submit());
 
         step("Найти ссылку на репозиторий \"GrigoriyAmelin/lesson7-allure\" и нажать на нее", () -> {
             $(byLinkText(repository)).click();

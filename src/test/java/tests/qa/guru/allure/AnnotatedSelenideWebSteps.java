@@ -2,13 +2,14 @@ package tests.qa.guru.allure;
 
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
+import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.addAttachment;
 
-public class AnnotatedSelenideWebSteps {
+public class AnnotatedSelenideWebSteps extends TestBase {
 
     @Step("Открыть страницу https://github.com")
     public void openMainPage() {
