@@ -4,18 +4,20 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Condition.exactTextCaseSensitive;
+import static com.codeborne.selenide.Condition.exactValue;
+import static com.codeborne.selenide.Selectors.byLinkText;
+import static com.codeborne.selenide.Selectors.byPartialLinkText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class BaseSelenideTest {
+public class BaseSelenideTestWoAllure {
 
     public static final String repository = "GrigoriyAmelin/lesson7-allure";
     public static final String tabName = "Issues";
+    public static final String tabSearchText = "is:issue is:open ";
 
     @Test
     public void testIssueSearch() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
 
         // Открыть страницу https://github.com
         open("https://github.com");
@@ -39,7 +41,7 @@ public class BaseSelenideTest {
         sleep(1000);
 
         // Проверить что открыта страница "Issues" и в поле поиска на странице отображается текст "is:issue is:open "
-        $("#js-issues-search").shouldHave(exactValue("is:issue is:open "));
+        $("#js-issues-search").shouldHave(exactValue(tabSearchText));
 
         // Проверить, что название таба соответствует тексту "Issues"
         $("#issues-tab").shouldHave(exactTextCaseSensitive(tabName));

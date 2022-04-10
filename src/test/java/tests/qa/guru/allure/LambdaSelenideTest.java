@@ -10,27 +10,28 @@ import static com.codeborne.selenide.Condition.exactValue;
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selectors.byPartialLinkText;
 import static com.codeborne.selenide.Selenide.*;
-import static io.qameta.allure.Allure.addAttachment;
-import static io.qameta.allure.Allure.step;
+import static io.qameta.allure.Allure.*;
+import static io.qameta.allure.Allure.parameter;
 
 public class LambdaSelenideTest {
 
     public static final String repository = "GrigoriyAmelin/lesson7-allure";
     public static final String tabName = "Issues";
+    public static final String tabSearchText = "is:issue is:open ";
 
     @Test
     public void testIssueSearchWithLambdaSteps() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
+        parameter("Репозиторий", repository);
+        parameter("Таб", tabName);
+
         step("Открыть страницу https://github.com", () -> {
             open("https://github.com");
         });
 
-        step("Найти поле поиска", () -> {
-            $(".header-search-input").click();
-        });
-
         step("Найти поле поиска и ввести \"GrigoriyAmelin/lesson7-allure\"", () -> {
+            $(".header-search-input").click();
             $(".header-search-input").sendKeys(repository);
             sleep(1000);
         });
@@ -52,7 +53,7 @@ public class LambdaSelenideTest {
 
         step("Проверить что открыта страница \"Issues\" и в поле поиска на странице отображается " +
                 "текст \"is:issue is:open \"", () -> {
-            $("#js-issues-search").shouldHave(exactValue("is:issue is:open "));
+            $("#js-issues-search").shouldHave(exactValue(tabSearchText));
         });
 
         step("Проверить, что название таба соответствует тексту \"Issues\"", () -> {
