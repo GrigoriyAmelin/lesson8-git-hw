@@ -28,6 +28,7 @@ public class StepsTest {
         });
         step("Ищем репозиторий " + REPOSITORY, () -> {
             $(".header-search-input").sendKeys(REPOSITORY);
+            sleep(1000);
             $(".header-search-input").click();
             sleep(1000);
             $(".header-search-input").submit();
