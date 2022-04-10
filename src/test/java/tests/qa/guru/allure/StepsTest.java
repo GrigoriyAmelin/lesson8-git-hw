@@ -21,7 +21,6 @@ public class StepsTest {
 
     @Test
     public void testLambdaSteps() {
-
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         step("Открываем главную страницу", () -> {

@@ -1,6 +1,8 @@
 package tests.qa.guru.allure;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +14,10 @@ public class LabelsTest {
     @Feature("Задачи в репозитории")
     @Story("Создание новой задачи")
     @DisplayName("Проверка создания issue для авторизованного пользователя")
-    @Description("Этот тетс проверяет создание Issue, когда происходит.")
+    @Description("Этот тест проверяет создание Issue, когда происходит какое-то действие.")
     // УРЛ страницы, которую тестируем
     @Link(value = "testing", url = "https://github.com")
+
     public void testAnnotatedLabels() {
 
     }
@@ -38,7 +41,12 @@ public class LabelsTest {
         });
         Allure.description("Этот тест проверяет создание Issue, когда происходит другое действие");
         Allure.link("testing", "https://github.com\"");
+    }
 
 
+    @Test
+    public void testParameters() {
+        Allure.parameter("Регион", "Москвская область");
+        Allure.parameter("Город", "Москва");
     }
 }
