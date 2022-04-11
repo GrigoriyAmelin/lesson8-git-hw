@@ -28,24 +28,19 @@ public class LambdaSelenideTest extends TestBase {
 
         step("Открыть страницу https://github.com", () -> open("https://github.com"));
 
-        step("Найти поле поиска и ввести \"GrigoriyAmelin/lesson7-allure\"", () -> {
-            $(".header-search-input").click();
-            $(".header-search-input").sendKeys(repository);
-            sleep(1000);
-        });
+        step("Найти поле поиска и ввести \"GrigoriyAmelin/lesson7-allure\"", () ->
+                $(".header-search-input").click());
 
-        step("Нажать клавишу ввода", () -> $(".header-search-input").submit());
+        step("Нажать клавишу ввода", () ->
+                $(".header-search-input").submit());
 
         step("Найти ссылку на репозиторий \"GrigoriyAmelin/lesson7-allure\" и нажать на нее", () -> {
             $(byLinkText(repository)).click();
             addAttachment("Page source", "text/html", WebDriverRunner.source(), "html");
-            sleep(1000);
         });
 
-        step("Найти таб с названием \"Issues\" и нажать на него", () -> {
-            $(byPartialLinkText(tabName)).click();
-            sleep(1000);
-        });
+        step("Найти таб с названием \"Issues\" и нажать на него", () ->
+                $(byPartialLinkText(tabName)).click());
 
         step("Проверить что открыта страница \"Issues\" и в поле поиска на странице отображается " +
                 "текст \"is:issue is:open \"", () -> {
@@ -55,7 +50,6 @@ public class LambdaSelenideTest extends TestBase {
         step("Проверить, что название таба соответствует тексту \"Issues\"", () -> {
             $("#issues-tab").shouldHave(exactTextCaseSensitive(tabName));
             addAttachment("Page source", "text/html", WebDriverRunner.source(), "html");
-            sleep(1000);
         });
     }
 }

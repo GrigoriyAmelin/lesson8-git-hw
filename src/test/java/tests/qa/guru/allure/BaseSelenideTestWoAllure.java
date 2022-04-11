@@ -25,24 +25,20 @@ public class BaseSelenideTestWoAllure extends TestBase {
 
         // Найти поле поиска и ввести "GrigoriyAmelin/lesson7-allure"
         $(".header-search-input").sendKeys(repository);
-        sleep(1000);
 
         // Нажать клавишу ввода
         $(".header-search-input").submit();
 
         // Найти ссылку на репозиторий "GrigoriyAmelin/lesson7-allure" и нажать на нее
         $(byLinkText(repository)).click();
-        sleep(1000);
 
         // Найти таб с названием "Issues" и нажать на него
         $(byPartialLinkText(tabName)).click();
-        sleep(1000);
 
         // Проверить что открыта страница "Issues" и в поле поиска на странице отображается текст "is:issue is:open "
         $("#js-issues-search").shouldHave(exactValue(tabSearchText));
 
         // Проверить, что название таба соответствует тексту "Issues"
         $("#issues-tab").shouldHave(exactTextCaseSensitive(tabName));
-        sleep(1000);
     }
 }

@@ -20,7 +20,6 @@ public class AnnotatedSelenideWebSteps extends TestBase {
     public void searchForRepository(String repository) {
         $(".header-search-input").click();
         $(".header-search-input").sendKeys(repository);
-        sleep(1000);
     }
 
     @Step("Нажать клавишу ввода")
@@ -32,13 +31,11 @@ public class AnnotatedSelenideWebSteps extends TestBase {
     public void openRepository(String repository) {
         $(byLinkText(repository)).click();
         addAttachment("Page source", "text/html", WebDriverRunner.source(), "html");
-        sleep(1000);
     }
 
     @Step("Найти таб с названием \"{tabName}\" и нажать на него")
     public void openIssueTab(String tabName) {
         $(byPartialLinkText(tabName)).click();
-        sleep(1000);
     }
 
     @Step("Проверить что открыта страница \"{tabName}\" и в поле поиска на странице отображается " +
@@ -51,6 +48,5 @@ public class AnnotatedSelenideWebSteps extends TestBase {
     public void shouldBeTabName(String tabName) {
         $("#issues-tab").shouldHave(exactTextCaseSensitive(tabName));
         addAttachment("Page source", "text/html", WebDriverRunner.source(), "html");
-        sleep(1000);
     }
 }
