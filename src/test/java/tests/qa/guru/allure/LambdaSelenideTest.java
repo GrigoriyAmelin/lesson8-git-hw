@@ -15,10 +15,6 @@ import static io.qameta.allure.Allure.parameter;
 
 public class LambdaSelenideTest extends TestBase {
 
-    public static final String repository = "GrigoriyAmelin/lesson7-allure";
-    public static final String tabName = "Issues";
-    public static final String tabSearchText = "is:issue is:open ";
-
     @Test
     public void testIssueSearchWithLambdaSteps() {
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -29,7 +25,7 @@ public class LambdaSelenideTest extends TestBase {
         step("Открыть страницу https://github.com", () -> open("https://github.com"));
 
         step("Найти поле поиска и ввести \"GrigoriyAmelin/lesson7-allure\"", () ->
-                $(".header-search-input").click());
+                $(".header-search-input").sendKeys(repository));
 
         step("Нажать клавишу ввода", () ->
                 $(".header-search-input").submit());

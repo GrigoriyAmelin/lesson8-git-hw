@@ -10,10 +10,6 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class BaseSelenideTestWoAllure extends TestBase {
 
-    public static final String repository = "GrigoriyAmelin/lesson7-allure";
-    public static final String tabName = "Issues";
-    public static final String tabSearchText = "is:issue is:open ";
-
     @Test
     public void testIssueSearch() {
 
