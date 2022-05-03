@@ -19,7 +19,7 @@ public class LambdaSelenideTest extends TestBase {
     public void testIssueSearchWithLambdaSteps() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
-        parameter("Репозиторий", repository);
+        parameter("Имя репозитория", repository);
         parameter("Таб", tabName);
 
         step("Открыть страницу https://github.com", () -> open("https://github.com"));

@@ -23,7 +23,7 @@ public class AnnotatedSelenideTest extends TestBase {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         parameter("Репозиторий", repository);
-        parameter("Таб", tabName);
+        parameter("Таб (вкладка)", tabName);
 
         AnnotatedSelenideWebSteps steps = new AnnotatedSelenideWebSteps();
 

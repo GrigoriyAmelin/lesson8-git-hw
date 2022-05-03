@@ -27,7 +27,7 @@ public class AnnotatedSelenideWebSteps extends TestBase {
         $(".header-search-input").submit();
     }
 
-    @Step("Найти ссылку на репозиторий \"{repository}\" и нажать на нее")
+    @Step("Найти ссылку на репозиторий \"{repository}\" и перейти по ней")
     public void openRepository(String repository) {
         $(byLinkText(repository)).click();
         addAttachment("Page source", "text/html", WebDriverRunner.source(), "html");
